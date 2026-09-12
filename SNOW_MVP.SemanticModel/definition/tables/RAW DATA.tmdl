@@ -1,0 +1,231 @@
+table 'RAW DATA'
+	lineageTag: 640eea78-1b9f-42a7-a97a-5ad26f84a9dd
+
+	column Number
+		dataType: string
+		lineageTag: 6d3bca01-73e5-42ea-8774-36cdaa6d8490
+		summarizeBy: none
+		sourceColumn: Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created
+		dataType: dateTime
+		formatString: DD-MMM-YYYY
+		lineageTag: cbd23a9b-6447-4c40-bcd5-9a427d39f800
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variation
+			isDefault
+			relationship: 8faeeec9-1594-43d8-88f4-1dea28401152
+			defaultHierarchy: LocalDateTable_8fbec8e9-fe95-464e-8940-7a8334e33e2b.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Priority
+		dataType: string
+		lineageTag: 32ece9dc-50c9-4728-bdf1-7543914dd1e8
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 6d0203e5-9df3-4071-96c6-e059a6a3ec15
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assignment group'
+		dataType: string
+		lineageTag: 901228a7-f734-49ff-a79a-17c3d0188cda
+		summarizeBy: none
+		sourceColumn: Assignment group
+		sortByColumn: 'Assignment Group Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assigned to'
+		dataType: string
+		lineageTag: 6fed1ce7-a0b5-466f-b796-a0e0c90c9ccd
+		summarizeBy: none
+		sourceColumn: Assigned to
+
+		annotation SummarizationSetBy = Automatic
+
+	column Updated
+		dataType: dateTime
+		formatString: DD-MMM-YYYY
+		lineageTag: 8d32605a-204d-4303-9822-85e8eaf3eee1
+		summarizeBy: none
+		sourceColumn: Updated
+
+		variation Variation
+			isDefault
+			relationship: 52995061-0207-492e-b2f5-3b843b4829b4
+			defaultHierarchy: LocalDateTable_50243b39-69ae-429d-958e-5ec35e943e7a.'Date Hierarchy'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column 'Short description'
+		dataType: string
+		lineageTag: a01b49bd-8ce6-4174-9dc0-46b00304907b
+		summarizeBy: none
+		sourceColumn: Short description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'On hold reason'
+		dataType: string
+		lineageTag: 0140b5c6-5156-41a4-a9d4-21b946fc8e31
+		summarizeBy: none
+		sourceColumn: On hold reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reopen count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8896f654-fd5d-4c0f-bab3-c50a5ec10081
+		summarizeBy: sum
+		sourceColumn: Reopen count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reassignment count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fccc346-352c-424a-8560-2a1f924f80eb
+		summarizeBy: sum
+		sourceColumn: Reassignment count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INC. AGE'
+		dataType: double
+		lineageTag: 298ddeac-46a7-4065-a59c-ba3d35549e8c
+		summarizeBy: sum
+		sourceColumn: INC. AGE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'AGE BIN'
+		dataType: string
+		lineageTag: fb9ef07f-b0ba-4c5c-9247-1455d4958887
+		summarizeBy: none
+		sourceColumn: AGE BIN
+		sortByColumn: 'BIN SORT'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assignment Group Sort'
+		dataType: int64
+		formatString: 0
+		lineageTag: 39d791ac-e19c-4a1d-8125-7b4815706c78
+		summarizeBy: sum
+		sourceColumn: Assignment Group Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BIN SORT'
+		dataType: int64
+		formatString: 0
+		lineageTag: ab7113b5-73d1-402d-9646-8639f91c1f5b
+		summarizeBy: sum
+		sourceColumn: BIN SORT
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAYTIMECHECK =
+			
+			VAR DayOfWeek = WEEKDAY('RAW DATA'[Created], 2)  -- 2 makes Monday = 1, Sunday = 7
+			VAR TimeOfDay = TIMEVALUE('RAW DATA'[Created])  -- Extracts the time portion
+			VAR StartTime = TIME(8, 30, 0)  -- 8:30 AM
+			VAR EndTime = TIME(21, 30, 0)   -- 9:30 PM
+			RETURN
+			    IF(
+			        DayOfWeek >= 1 && DayOfWeek <= 5 && TimeOfDay >= StartTime && TimeOfDay <= EndTime,
+			        TRUE(),
+			        FALSE()
+			    )
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6ad07172-3f0e-4611-919b-ad6b351a587d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Yr-Mnth = FORMAT('RAW DATA'[Created], "YYYY-MMM")
+		lineageTag: abc2483f-940c-45ec-834b-4d46fda30f33
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TEAM NAME'
+		dataType: string
+		lineageTag: 25d73c25-47e2-48f0-a293-0bce7ca924ab
+		summarizeBy: none
+		sourceColumn: TEAM NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prty
+		dataType: string
+		lineageTag: bd3fc0df-5074-47ba-9596-a0b44bcac335
+		summarizeBy: none
+		sourceColumn: Prty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'RAW DATA' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\SHUBGAN\Downloads\POC VERSION CONTROL\SERVICENOW_RD_POC_VERSION_CONTROL.xlsx"), null, true),
+				    Table1_Table = Source{[Item="Table1",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Table1_Table,{{"Number", type text}, {"Created", type datetime}, {"Priority", type text}, {"State", type text}, {"Assignment group", type text}, {"Assigned to", type text}, {"Updated", type datetime}, {"Short description", type text}, {"On hold reason", type any}, {"Reopen count", Int64.Type}, {"Reassignment count", Int64.Type}}),
+				    #"AGE INCIDENT" = Table.AddColumn(#"Changed Type", "INC. AGE", each [Updated]-[Created]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"AGE INCIDENT",{{"INC. AGE", type number}}),
+				    #"Age Bin" = Table.AddColumn(#"Changed Type1", "AGE BIN", each if [INC. AGE] = 30 then "30 days" else if [INC. AGE] < 30 then "Less than 30 days" else if [INC. AGE] <= 60 then "31-60 days" else "60+ days"),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Age Bin",{{"AGE BIN", type text}}),
+				    #"Assignment Group Sort" = Table.AddColumn(#"Changed Type2", "Assignment Group Sort", each if Text.Contains([Assignment group], "BICC") then 1 else if Text.Contains([Assignment group], "DWH") then 2 else if Text.Contains([Assignment group], "Azure") then 3 else if Text.Contains([Assignment group], "Salesforce") then 4 else if Text.Contains([Assignment group], "Genesys") then 5 else if Text.Contains([Assignment group], "XENTRY") then 6 else 7),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Assignment Group Sort",{{"Assignment Group Sort", Int64.Type}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type3", "BIN SORT", each if [AGE BIN] = "Less than 30 days" then 1 else if [AGE BIN] = "30 days" then 2 else if [AGE BIN] = "31-60 days" then 3 else if [AGE BIN] = "60+ days" then 4 else 5),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Added Conditional Column",{{"BIN SORT", Int64.Type}}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Changed Type4", "TEAM NAME", each if Text.Contains([Assignment group], "DWH") then "DWH" else if Text.Contains([Assignment group], "Salesforce") then "SALESFORCE" else if Text.Contains([Assignment group], "BICC") then "BICC" else if Text.Contains([Assignment group], "Azure") then "AZURE" else if Text.Contains([Assignment group], "XENTRY") then "XENTRY" else if Text.Contains([Assignment group], "Genesys") then "GENESYS" else "OTHER"),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Added Conditional Column1",{{"TEAM NAME", type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type5", "Priority", "Priority - Copy"),
+				    #"Extracted First Characters" = Table.TransformColumns(#"Duplicated Column", {{"Priority - Copy", each Text.Start(_, 1), type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Extracted First Characters",{{"Priority - Copy", "Prty"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns","4","P4",Replacer.ReplaceText,{"Prty"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","1","P1",Replacer.ReplaceText,{"Prty"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","2","P2",Replacer.ReplaceText,{"Prty"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Replaced Value2", each true),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Filtered Rows","3","P3",Replacer.ReplaceText,{"Prty"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","5","P5",Replacer.ReplaceText,{"Prty"}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Replaced Value4", each true)
+				in
+				    #"Filtered Rows1"
+
+	annotation PBI_ResultType = Table
+

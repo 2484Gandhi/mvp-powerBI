@@ -1,0 +1,152 @@
+table 'MEASURES (2)'
+	lineageTag: 7a65320d-2d5e-4e05-b228-33b6228764a2
+
+	measure COUNTROW = COUNTROWS('RAW DATA')
+		formatString: 0
+		lineageTag: 27767da2-8f41-4672-988b-49bcae71dff6
+
+	measure 'INC.CNT' = COUNT('RAW DATA'[Number])
+		formatString: 0
+		lineageTag: 1bd77fad-e86e-495e-9891-e62f70f9ee4b
+
+	measure MMTR = ```
+			
+			AVERAGEX(
+			    SUMMARIZE(
+			        'RAW DATA', 
+			        'RAW DATA'[Yr-Mnth], 
+			        'RAW DATA'[Priority],
+			        "Avg Dur.", AVERAGE('RAW DATA'[INC. AGE])
+			    ), 
+			    [Avg Dur.]
+			)
+			```
+		lineageTag: bd9de0fe-42c3-4c99-b955-a6b36519df04
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTTR Avg' = ```
+			
+			    FORMAT(INT([MMTR]), "0") & " days, " &
+			    FORMAT(INT(([MMTR] - INT([MMTR])) * 24), "0") & " hrs, " &
+			    FORMAT(INT((([MMTR] - INT([MMTR])) * 24 - INT(([MMTR] - INT([MMTR])) * 24)) * 60), "0") & " min, " &
+			    FORMAT(ROUND((((([MMTR] - INT([MMTR])) * 24 - INT(([MMTR] - INT([MMTR])) * 24)) * 60 - INT((([MMTR] - INT([MMTR])) * 24 - INT(([MMTR] - INT([MMTR])) * 24)) * 60)) * 60), 0), "0") & " sec"
+			```
+		lineageTag: 560a3427-96b6-4ae7-aac1-75b4836d46f4
+
+	measure 'MTTR Avg Mins' = ROUND([MMTR]*1440,0) & " mins "
+		lineageTag: b60ee125-93ce-4f76-90dd-3f7ea5db36ba
+
+	measure '"Canceled", "Closed", "Resolved" Count' =
+			
+			CALCULATE (
+			    COUNTROWS ( 'RAW DATA' ),
+			    'RAW DATA'[State] IN { "Canceled", "Closed", "Resolved" },
+			    'RAW DATA'[Reopen count] = 0,
+			    LEFT ( 'RAW DATA'[Assignment group], 7 ) = "122_CCC"
+			)
+		formatString: 0
+		lineageTag: 3a8042b8-69e0-4941-adc8-11733cf55d1a
+
+	measure FTR = (["Canceled", "Closed", "Resolved" Count]/[INC.CNT])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6bca35ce-09bf-4cc9-8625-855ebb68aadb
+
+	measure Target = .60
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 951d8fcb-0ddd-4cad-a911-cdbbac0a9d3f
+
+	measure 'CONDITIONAL for FTR' =
+			
+			SWITCH(
+			    TRUE()
+			    ,[FTR]<= .60 ,"Red","Green")
+		lineageTag: 2972c69c-a868-4639-8dcd-4353c3806672
+
+	measure 'Awaiting Problem Count' =
+			
+			CALCULATE (
+			    COUNTROWS ( 'RAW DATA' ),
+			    'RAW DATA'[On hold reason] IN { "Awaiting Problem" },
+			    'RAW DATA'[Reopen count] = 0,
+			    LEFT ( 'RAW DATA'[Assignment group], 7 ) = "122_CCC"
+			)
+		formatString: 0
+		lineageTag: 9bed587f-c79c-4562-80ba-b8bdb8ca524f
+
+	measure 'FTR TITLE' = "What is the FTR% as of " & Format(MAX('RAW DATA'[Created]),"DD-MM-YYYY") & " ?"
+		lineageTag: 5063084a-c668-4a8b-8037-497f0d15557e
+
+	measure 'MTTR TITLE' = "Total Inc. count as " & Format(MAX('RAW DATA'[Created]),"DD-MM-YYYY") & " is :"
+		lineageTag: 39bf53f2-8d93-407a-b5c2-4235c8bc79ca
+
+	measure 'MTTR TEXT1' = "MTTR for the same : " &[MTTR Avg]
+		lineageTag: 123b6467-05de-49cd-8e90-03a139461a45
+
+	measure 'MTTR TEXT2' = "MTTR for the same in mins : " &[MTTR Avg Mins]
+		lineageTag: 50b92c32-7e57-4357-8589-397a7802b4e6
+
+	measure 'TEST MTTR Avg Mins' = ROUND([MMTR]*1440,0)
+		lineageTag: 7e3db807-0aa7-452c-8f47-030f2147e39a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'BACKLOG COUNT' = "Backlog Count : " & [BACKLOGCNT]
+		lineageTag: 9e20dcce-d490-4acb-8ce9-2cd009670688
+
+	measure BACKLOGCNT =
+			CALCULATE (
+			    COUNTROWS ( 'RAW DATA' ),
+			    'RAW DATA'[INC. AGE] > 30)
+		formatString: 0
+		lineageTag: 484aa44c-549c-4499-b638-adf1abcd4b15
+
+	measure 'MTTR Avg Minsline' = ROUND([MMTR]*1440,0)
+		lineageTag: 0e21e484-7923-47ba-a141-50a64505c189
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MTTR Avg Hrs' = ROUND(DIVIDE([MMTR]*1440,60),0) & "Hrs"
+		lineageTag: 48e91071-a161-4271-a711-8107a0085f99
+
+	measure 'MTTR Avg Hrs.' = ROUND(DIVIDE([MMTR]*1440,30),0) & "Hrs"
+		lineageTag: 9a7fc862-3b5d-4aa2-b767-869b679b2f67
+
+	measure 'MTTR Avg Mins.' = ROUND([MMTR]*720,0) & " mins "
+		lineageTag: 5e422be2-9614-4fd4-b96c-6af2e8b07118
+
+	measure 'MTTR TEXT3' = "MTTR for the same : " &[MTTR Avg Hrs]
+		lineageTag: 971446b1-930d-4991-8c87-f5c2edbe5a16
+
+	measure BacklogCount(updated) = ```
+			
+			CALCULATE(
+			    COUNTROWS('RAW DATA'),
+			    'RAW DATA'[State] IN { "In Progress", "On Hold" },
+			    (
+			        ('RAW DATA'[Prty] = "P1" && 'RAW DATA'[INC. AGE] > 8/24)
+			        || ('RAW DATA'[Prty] = "P2" && 'RAW DATA'[INC. AGE] > 4)
+			        || ('RAW DATA'[Prty] = "P3" && 'RAW DATA'[INC. AGE] > 8)
+			        || ('RAW DATA'[Prty] = "P4" && 'RAW DATA'[INC. AGE] > 20)
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: ade94cef-676d-4111-a223-1352e9ce489b
+
+	measure BACKLOG_CNT = "Backlog Count : " & [BacklogCount(updated)]
+		lineageTag: 8a25369a-660f-4f34-bb69-ee1f69c12a09
+
+	partition 'MEASURES (2)' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

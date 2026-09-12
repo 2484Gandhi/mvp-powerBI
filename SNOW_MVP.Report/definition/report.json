@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY23SU11",
+      "reportVersionAtImport": {
+        "visual": "1.8.86",
+        "report": "2.0.86",
+        "page": "1.3.86"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY23SU11",
+          "path": "BaseThemes/CY23SU11.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Slide103362175637370517.JPG",
+          "path": "Slide103362175637370517.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide15022083578210925.JPG",
+          "path": "Slide15022083578210925.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide15717816739942665.JPG",
+          "path": "Slide15717816739942665.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide17641832699804216.JPG",
+          "path": "Slide17641832699804216.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide29744816075192038.JPG",
+          "path": "Slide29744816075192038.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide328051147058371817.JPG",
+          "path": "Slide328051147058371817.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide38070971248035059.JPG",
+          "path": "Slide38070971248035059.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide413461318759826324.JPG",
+          "path": "Slide413461318759826324.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide47316352379028661.JPG",
+          "path": "Slide47316352379028661.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide51707425282597932.JPG",
+          "path": "Slide51707425282597932.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide59060893987807863.JPG",
+          "path": "Slide59060893987807863.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide615931645216441503.JPG",
+          "path": "Slide615931645216441503.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide67793548350018142.JPG",
+          "path": "Slide67793548350018142.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide75499835746651958.JPG",
+          "path": "Slide75499835746651958.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide75514072761817139.JPG",
+          "path": "Slide75514072761817139.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide8704599143613329.JPG",
+          "path": "Slide8704599143613329.JPG",
+          "type": "Image"
+        },
+        {
+          "name": "Slide944914018175794457.JPG",
+          "path": "Slide944914018175794457.JPG",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": false,
+    "useDefaultAggregateDisplayName": true
+  }
+}
