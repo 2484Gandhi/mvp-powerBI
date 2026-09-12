@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["RAW DATA","MEASURES (2)"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'RAW DATA'
+ref table DateTableTemplate_5796446a-7f9d-44bd-aa50-88bfacb2747c
+ref table LocalDateTable_50243b39-69ae-429d-958e-5ec35e943e7a
+ref table 'MEASURES (2)'
+ref table LocalDateTable_8fbec8e9-fe95-464e-8940-7a8334e33e2b
+
+ref cultureInfo en-US
+

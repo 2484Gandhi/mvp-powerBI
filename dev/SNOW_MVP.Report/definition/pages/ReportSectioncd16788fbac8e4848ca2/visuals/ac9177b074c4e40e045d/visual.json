@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "ac9177b074c4e40e045d",
+  "position": {
+    "x": 26.456896352857047,
+    "y": 66.142240882142616,
+    "z": 1000,
+    "height": 580.16194145193663,
+    "width": 684.0997485524465,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RAW DATA"
+                    }
+                  },
+                  "Property": "Created"
+                }
+              },
+              "queryRef": "RAW DATA.Created",
+              "nativeQueryRef": "Created"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RAW DATA"
+                    }
+                  },
+                  "Property": "Updated"
+                }
+              },
+              "queryRef": "RAW DATA.Updated",
+              "nativeQueryRef": "Updated"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RAW DATA"
+                    }
+                  },
+                  "Property": "Number"
+                }
+              },
+              "queryRef": "RAW DATA.Number",
+              "nativeQueryRef": "Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RAW DATA"
+                    }
+                  },
+                  "Property": "Priority"
+                }
+              },
+              "queryRef": "RAW DATA.Priority",
+              "nativeQueryRef": "Priority"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RAW DATA"
+                    }
+                  },
+                  "Property": "On hold reason"
+                }
+              },
+              "queryRef": "RAW DATA.On hold reason",
+              "nativeQueryRef": "On hold reason"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MEASURES (2)"
+                    }
+                  },
+                  "Property": "BacklogCount(updated)"
+                }
+              },
+              "queryRef": "MEASURES (2).BacklogCount(updated)",
+              "nativeQueryRef": "BacklogCount(updated)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "RAW DATA"
+                    }
+                  },
+                  "Property": "INC. AGE"
+                }
+              },
+              "queryRef": "Sum(RAW DATA.INC. AGE)",
+              "nativeQueryRef": "INC. AGE"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
