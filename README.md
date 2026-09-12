@@ -7,7 +7,10 @@ SNOW MVP is a Power BI report for ServiceNow incident operations. It provides vi
 - `SNOW_MVP.pbip` - Power BI Project entry point.
 - `SNOW_MVP.Report/` - Report pages, visuals, themes, and registered image resources.
 - `SNOW_MVP.SemanticModel/` - Semantic model, Power Query definition, relationships, and measures.
+- `SNOW_MVP.SemanticModel/SERVICENOW_RD_POC_VERSION_CONTROL_MOCK.xlsx` - Synthetic workbook preserving the source schema and `Table1` name.
 - `SNOW_MVP.pbix` - Packaged Power BI Desktop version of the report.
+
+> **Public-release status:** The PBIP definitions now use synthetic incident data. The existing `SNOW_MVP.pbix` must still be opened, refreshed, and saved again in Power BI Desktop before it is published because a PBIX can retain imported data internally.
 
 ## Open the project
 
@@ -42,9 +45,19 @@ The Power Query transformation also derives age bands, team names, assignment-gr
 
 ## Refresh the data
 
-The `RAW DATA` query now generates a deterministic synthetic incident dataset inside the semantic model. It does not require an external workbook or local file path. Replace the mock rows in the Power Query definition only when you are intentionally creating a different public test dataset.
+The `RAW DATA` query now generates a deterministic synthetic incident dataset inside the semantic model. The repository also includes `SERVICENOW_RD_POC_VERSION_CONTROL_MOCK.xlsx` as a source-shaped reference dataset; it preserves the original 11-column schema and `Table1` name but is not required by the current inline query.
 
 The dataset is synthetic and must not be replaced with production or personal data before publishing this repository.
+
+## Public-release checklist
+
+Before pushing this project to a public repository:
+
+- Refresh the PBIP project in Power BI Desktop and replace `SNOW_MVP.pbix` with the refreshed file.
+- Inspect incident detail and drillthrough pages for mock IDs, users, descriptions, dates, and team names.
+- Confirm all eight pages, filters, navigation, measures, and drillthrough actions work.
+- Search tracked files and Git history for real incident IDs, people, internal team names, local paths, source workbook names, and corporate email addresses.
+- Do not commit source workbooks, exports, Power BI caches, backups, or the old PBIX.
 
 ## Development notes
 
