@@ -42,8 +42,7 @@ table 'MEASURES (2)'
 			CALCULATE (
 			    COUNTROWS ( 'RAW DATA' ),
 			    'RAW DATA'[State] IN { "Canceled", "Closed", "Resolved" },
-			    'RAW DATA'[Reopen count] = 0,
-			    LEFT ( 'RAW DATA'[Assignment group], 7 ) = "122_CCC"
+			    'RAW DATA'[Reopen count] = 0
 			)
 		formatString: 0
 		lineageTag: 3a8042b8-69e0-4941-adc8-11733cf55d1a
@@ -68,8 +67,7 @@ table 'MEASURES (2)'
 			CALCULATE (
 			    COUNTROWS ( 'RAW DATA' ),
 			    'RAW DATA'[On hold reason] IN { "Awaiting Problem" },
-			    'RAW DATA'[Reopen count] = 0,
-			    LEFT ( 'RAW DATA'[Assignment group], 7 ) = "122_CCC"
+			    'RAW DATA'[Reopen count] = 0
 			)
 		formatString: 0
 		lineageTag: 9bed587f-c79c-4562-80ba-b8bdb8ca524f
