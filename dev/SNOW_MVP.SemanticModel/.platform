@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SNOW_MVP"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "766b0d39-cb28-4b6a-bc0d-54e6b1c49d45"
+  }
+}

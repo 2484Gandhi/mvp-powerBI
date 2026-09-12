@@ -1,0 +1,32 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "1.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "raw_data_age_inc.bin": {
+			      "Binding": {
+			        "ConceptualEntity": "RAW DATA AGE INC",
+			        "ConceptualProperty": "BIN"
+			      },
+			      "State": "Generated"
+			    },
+			    "raw_data_age_inc.number": {
+			      "Binding": {
+			        "ConceptualEntity": "RAW DATA AGE INC",
+			        "ConceptualProperty": "Number"
+			      },
+			      "State": "Generated"
+			    },
+			    "incidents.canceled_closed_resolved_count": {
+			      "Binding": {
+			        "ConceptualEntity": "Incidents",
+			        "ConceptualProperty": "\"Canceled\", \"Closed\", \"Resolved\" Count"
+			      },
+			      "State": "Generated"
+			    }
+			  }
+			}
+		contentType: json
+

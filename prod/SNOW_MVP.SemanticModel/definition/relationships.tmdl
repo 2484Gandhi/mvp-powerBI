@@ -1,0 +1,10 @@
+relationship 52995061-0207-492e-b2f5-3b843b4829b4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'RAW DATA'.Updated
+	toColumn: LocalDateTable_50243b39-69ae-429d-958e-5ec35e943e7a.Date
+
+relationship 8faeeec9-1594-43d8-88f4-1dea28401152
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'RAW DATA'.Created
+	toColumn: LocalDateTable_8fbec8e9-fe95-464e-8940-7a8334e33e2b.Date
+

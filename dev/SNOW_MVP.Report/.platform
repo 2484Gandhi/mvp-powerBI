@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "SNOW_MVP"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ce3199aa-6e51-467f-a24b-7caab66bf102"
+  }
+}
